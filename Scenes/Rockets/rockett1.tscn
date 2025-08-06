@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkpqc25hr7lj4"]
+
+[ext_resource type="Texture2D" uid="uid://dq4ggmabua0dy" path="res://Assets/rocket/rocket_chemical_boosted.png" id="1_r8gsr"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="1_vswyv"]
+[ext_resource type="Texture2D" uid="uid://c3gtwencbhrs4" path="res://Assets/rocket/rocket_chemical.png" id="2_hcadq"]
+[ext_resource type="Texture2D" uid="uid://b7ictqkrjg2n8" path="res://Assets/rocket/rocket_chemical_thrust.png" id="3_g8rck"]
+[ext_resource type="Script" path="res://Scripts/rocket_animation.gd" id="5_82knw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fixd8"]
+atlas = ExtResource("1_r8gsr")
+region = Rect2(0, 0, 310, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs8pp"]
+atlas = ExtResource("2_hcadq")
+region = Rect2(0, 0, 310, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53px0"]
+atlas = ExtResource("3_g8rck")
+region = Rect2(0, 0, 310, 780)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g26gf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fixd8")
+}],
+"loop": true,
+"name": &"boost",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs8pp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53px0")
+}],
+"loop": true,
+"name": &"thrust",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3h5n"]
+radius = 121.52
+
+[node name="RocketT1" type="RigidBody2D"]
+angular_damp = 2.55
+script = ExtResource("1_vswyv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_g26gf")
+animation = &"idle"
+autoplay = "idle"
+script = ExtResource("5_82knw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_w3h5n")
+
+[node name="Camera2D" type="Camera2D" parent="."]

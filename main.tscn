@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxrha840ljdo5"]
+
+[ext_resource type="PackedScene" uid="uid://bkpqc25hr7lj4" path="res://Scenes/Rockets/rockett1.tscn" id="1_mge8t"]
+[ext_resource type="Texture2D" uid="uid://chps2cc710d28" path="res://Assets/planets/placeholder.png" id="2_q128o"]
+[ext_resource type="PackedScene" uid="uid://bh7sv2laclabq" path="res://Scenes/Hazards/bullet.tscn" id="3_pcdqo"]
+[ext_resource type="PackedScene" uid="uid://is0yijntpkoh" path="res://Scenes/Resources/energy.tscn" id="4_uj00s"]
+[ext_resource type="PackedScene" uid="uid://bk3ppuluq26mb" path="res://Scenes/Resources/fuel.tscn" id="5_8ylkk"]
+[ext_resource type="PackedScene" uid="uid://itk4bchy2rgi" path="res://Scenes/Resources/gems.tscn" id="6_0q72t"]
+[ext_resource type="PackedScene" uid="uid://cko3nfhvbqdsn" path="res://Scenes/Spawners/volcano.tscn" id="7_e08mx"]
+[ext_resource type="PackedScene" uid="uid://cs1joa4ve5g05" path="res://Scenes/Spawners/clouds.tscn" id="8_x0es4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5u3i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5d80"]
+
+[node name="World" type="Node2D"]
+
+[node name="RocketT1" parent="." instance=ExtResource("1_mge8t")]
+position = Vector2(408, 208)
+
+[node name="Poliahu" type="StaticBody2D" parent="."]
+position = Vector2(408, 544)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poliahu"]
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_f5u3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Poliahu"]
+texture = ExtResource("2_q128o")
+
+[node name="Area2D" type="Area2D" parent="Poliahu"]
+gravity_space_override = 3
+gravity_point = true
+gravity = 276.646
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poliahu/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_y5d80")
+
+[node name="Gula" type="StaticBody2D" parent="."]
+position = Vector2(-1032, 224)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gula"]
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_f5u3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gula"]
+texture = ExtResource("2_q128o")
+
+[node name="Area2D" type="Area2D" parent="Gula"]
+gravity_space_override = 3
+gravity_point = true
+gravity = 276.646
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gula/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_y5d80")
+
+[node name="Bullet" parent="." instance=ExtResource("3_pcdqo")]
+position = Vector2(328, 192)
+
+[node name="Energy" parent="." instance=ExtResource("4_uj00s")]
+position = Vector2(496, 192)
+
+[node name="Fuel" parent="." instance=ExtResource("5_8ylkk")]
+position = Vector2(456, 96)
+
+[node name="Gem" parent="." instance=ExtResource("6_0q72t")]
+position = Vector2(360, 104)
+
+[node name="Volcano" parent="." instance=ExtResource("7_e08mx")]
+position = Vector2(240, 408)
+
+[node name="Cloud" parent="." instance=ExtResource("8_x0es4")]
+position = Vector2(648, 328)

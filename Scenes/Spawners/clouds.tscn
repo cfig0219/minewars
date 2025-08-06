@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs1joa4ve5g05"]
+
+[ext_resource type="Texture2D" uid="uid://c0jnlv24j15jl" path="res://Assets/sky/cloud1.png" id="1_fnds5"]
+[ext_resource type="Texture2D" uid="uid://dolvy0xv5isn5" path="res://Assets/sky/cloud2.png" id="2_3udmv"]
+[ext_resource type="Texture2D" uid="uid://c65b0tpey6thn" path="res://Assets/sky/cloud3.png" id="3_rf5jd"]
+[ext_resource type="Texture2D" uid="uid://dyaxhhqp3ti4x" path="res://Assets/sky/cloud4.png" id="4_qf73h"]
+[ext_resource type="Texture2D" uid="uid://dpuyjd8rmkycy" path="res://Assets/sky/cloud5.png" id="5_v0f74"]
+[ext_resource type="Texture2D" uid="uid://4qk17nbq15db" path="res://Assets/sky/cloud6.png" id="6_b54o5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfhn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fnds5")
+}],
+"loop": true,
+"name": &"cloud1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3udmv")
+}],
+"loop": true,
+"name": &"cloud2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rf5jd")
+}],
+"loop": true,
+"name": &"cloud3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qf73h")
+}],
+"loop": true,
+"name": &"cloud4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v0f74")
+}],
+"loop": true,
+"name": &"cloud5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b54o5")
+}],
+"loop": true,
+"name": &"cloud6",
+"speed": 5.0
+}]
+
+[node name="Spawner" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_cfhn3")
+animation = &"cloud1"

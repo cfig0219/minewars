@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://is0yijntpkoh"]
+
+[ext_resource type="Texture2D" uid="uid://bljlt0j35o3ux" path="res://Assets/resources/energy_antimatter.png" id="1_db7ff"]
+[ext_resource type="Texture2D" uid="uid://ldeaarmxg0da" path="res://Assets/resources/energy_deuterium.png" id="2_f0wmf"]
+[ext_resource type="Texture2D" uid="uid://c8swnthq3f55p" path="res://Assets/resources/energy_lithium.png" id="3_qh6py"]
+[ext_resource type="Texture2D" uid="uid://b1vl7burv7kgn" path="res://Assets/resources/energy_tritium.png" id="4_iecm1"]
+[ext_resource type="Texture2D" uid="uid://b3pdusqvoodps" path="res://Assets/resources/energy_uranium.png" id="5_xkigt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfhn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_db7ff")
+}],
+"loop": true,
+"name": &"antimatter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f0wmf")
+}],
+"loop": true,
+"name": &"deuterium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qh6py")
+}],
+"loop": true,
+"name": &"lithium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_iecm1")
+}],
+"loop": true,
+"name": &"tritium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xkigt")
+}],
+"loop": true,
+"name": &"uranium",
+"speed": 5.0
+}]
+
+[node name="Resource" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.27, 0.27)
+sprite_frames = SubResource("SpriteFrames_cfhn3")
+animation = &"lithium"

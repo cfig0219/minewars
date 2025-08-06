@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk3ppuluq26mb"]
+
+[ext_resource type="Texture2D" uid="uid://8x7m1jibimka" path="res://Assets/resources/fuel_hydrogen.png" id="1_8bfnr"]
+[ext_resource type="Texture2D" uid="uid://c1kcawfodwstf" path="res://Assets/resources/fuel_methane.png" id="2_8kcao"]
+[ext_resource type="Texture2D" uid="uid://d34jvoxvi3idd" path="res://Assets/resources/fuel_oxygen.png" id="3_v54d0"]
+[ext_resource type="Texture2D" uid="uid://csehkf7fnxfyl" path="res://Assets/resources/fuel_petroleum.png" id="4_kk8qj"]
+[ext_resource type="Texture2D" uid="uid://no13vpfwstgd" path="res://Assets/resources/fuel_water.png" id="5_mcl4h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfhn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8bfnr")
+}],
+"loop": true,
+"name": &"hydrogen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8kcao")
+}],
+"loop": true,
+"name": &"methane",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v54d0")
+}],
+"loop": true,
+"name": &"oxygen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kk8qj")
+}],
+"loop": true,
+"name": &"petroleum",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mcl4h")
+}],
+"loop": true,
+"name": &"water",
+"speed": 5.0
+}]
+
+[node name="Resource" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.27, 0.27)
+sprite_frames = SubResource("SpriteFrames_cfhn3")
+animation = &"water"

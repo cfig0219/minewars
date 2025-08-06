@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=3 uid="uid://itk4bchy2rgi"]
+
+[ext_resource type="Texture2D" uid="uid://bhjxir6hwl32b" path="res://Assets/resources/gem_aluminum.png" id="1_q7vfo"]
+[ext_resource type="Texture2D" uid="uid://dcmunqwtdcv74" path="res://Assets/resources/gem_coal.png" id="2_oqn7b"]
+[ext_resource type="Texture2D" uid="uid://d3ei1ygt05x8b" path="res://Assets/resources/gem_copper.png" id="3_tt317"]
+[ext_resource type="Texture2D" uid="uid://di12w6871v1bo" path="res://Assets/resources/gem_diamond.png" id="4_k65ef"]
+[ext_resource type="Texture2D" uid="uid://c0hvjsigyufjo" path="res://Assets/resources/gem_gold.png" id="5_mmogu"]
+[ext_resource type="Texture2D" uid="uid://dybn66d5dxgv5" path="res://Assets/resources/gem_ice7.png" id="6_whrs7"]
+[ext_resource type="Texture2D" uid="uid://bkoxc0w1rdn8w" path="res://Assets/resources/gem_iron.png" id="7_l3cd1"]
+[ext_resource type="Texture2D" uid="uid://drlyp8jjcr0qt" path="res://Assets/resources/gem_lead.png" id="8_lwvu4"]
+[ext_resource type="Texture2D" uid="uid://b2wpmfuhbm1s" path="res://Assets/resources/gem_neodymium.png" id="9_3q45x"]
+[ext_resource type="Texture2D" uid="uid://3s78kx6ufso4" path="res://Assets/resources/gem_osmium.png" id="10_f2r2h"]
+[ext_resource type="Texture2D" uid="uid://de4gyk7ocg360" path="res://Assets/resources/gem_plutonium.png" id="11_23wmu"]
+[ext_resource type="Texture2D" uid="uid://cnv0hpqt0v5vy" path="res://Assets/resources/gem_rhodium.png" id="12_1qsyw"]
+[ext_resource type="Texture2D" uid="uid://r8l85lje340v" path="res://Assets/resources/gem_sulfur.png" id="13_yfsoj"]
+[ext_resource type="Texture2D" uid="uid://bvajifobmu30q" path="res://Assets/resources/gem_titanium.png" id="14_muhwx"]
+[ext_resource type="Texture2D" uid="uid://decmkejymcu3u" path="res://Assets/resources/gem_tungsten.png" id="15_siyqj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfhn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q7vfo")
+}],
+"loop": true,
+"name": &"aluminum",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oqn7b")
+}],
+"loop": true,
+"name": &"coal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tt317")
+}],
+"loop": true,
+"name": &"copper",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k65ef")
+}],
+"loop": true,
+"name": &"diamond",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mmogu")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_whrs7")
+}],
+"loop": true,
+"name": &"ice7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_l3cd1")
+}],
+"loop": true,
+"name": &"iron",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lwvu4")
+}],
+"loop": true,
+"name": &"lead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_3q45x")
+}],
+"loop": true,
+"name": &"neodymium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_f2r2h")
+}],
+"loop": true,
+"name": &"osmium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_23wmu")
+}],
+"loop": true,
+"name": &"plutonium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_1qsyw")
+}],
+"loop": true,
+"name": &"rhodium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_yfsoj")
+}],
+"loop": true,
+"name": &"sulfur",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_muhwx")
+}],
+"loop": true,
+"name": &"titanium",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_siyqj")
+}],
+"loop": true,
+"name": &"tungsten",
+"speed": 5.0
+}]
+
+[node name="Resource" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.27, 0.27)
+sprite_frames = SubResource("SpriteFrames_cfhn3")
+animation = &"aluminum"
