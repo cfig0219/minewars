@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cxrha840ljdo5"]
 
-[ext_resource type="PackedScene" uid="uid://bkpqc25hr7lj4" path="res://Scenes/Rockets/rockett1.tscn" id="1_mge8t"]
+[ext_resource type="PackedScene" uid="uid://bkpqc25hr7lj4" path="res://Scenes/Rockets/rocket.tscn" id="1_mge8t"]
 [ext_resource type="Texture2D" uid="uid://chps2cc710d28" path="res://Assets/planets/placeholder.png" id="2_q128o"]
 [ext_resource type="PackedScene" uid="uid://bh7sv2laclabq" path="res://Scenes/Hazards/bullet.tscn" id="3_pcdqo"]
 [ext_resource type="PackedScene" uid="uid://is0yijntpkoh" path="res://Scenes/Resources/energy.tscn" id="4_uj00s"]
@@ -15,7 +15,7 @@
 
 [node name="World" type="Node2D"]
 
-[node name="RocketT1" parent="." instance=ExtResource("1_mge8t")]
+[node name="Player" parent="." instance=ExtResource("1_mge8t")]
 position = Vector2(408, 208)
 
 [node name="Poliahu" type="StaticBody2D" parent="."]

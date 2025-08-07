@@ -1,12 +1,8 @@
 extends RigidBody2D
 
-# variables accessible in the editor
-@export var speed = 400
-@export var rotation_speed = 3.0  # Radians per second
-
 # private variables
-var fuel_mult = 1.0
-var energy_mult = 1.0
+var speed = 400
+var rotation_speed = 3.0  # Radians per second
 
 
 func _physics_process(delta):
@@ -34,9 +30,9 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed(key):
 			
 			# reduces fuel and energy per every throttle use
-			Global.fuel = Global.fuel - (1/fuel_mult)
-			Global.energy = Global.energy - (1/energy_mult)
-			print(Global.fuel, " ", Global.energy)
+			Global.fuel = Global.fuel - (1/Global.fuel_mult)
+			Global.energy = Global.energy - (1/Global.energy_mult)
+			print(Global.fuel, " ", Global.energy, " ", Global.health)
 			break
 
 	# Optional: rotate to velocity direction (if needed)
