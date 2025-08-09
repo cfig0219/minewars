@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://is0yijntpkoh"]
+[gd_scene load_steps=9 format=3 uid="uid://is0yijntpkoh"]
 
 [ext_resource type="Texture2D" uid="uid://bljlt0j35o3ux" path="res://Assets/resources/energy_antimatter.png" id="1_db7ff"]
+[ext_resource type="Script" path="res://Scripts/energy.gd" id="1_fqr0d"]
 [ext_resource type="Texture2D" uid="uid://ldeaarmxg0da" path="res://Assets/resources/energy_deuterium.png" id="2_f0wmf"]
 [ext_resource type="Texture2D" uid="uid://c8swnthq3f55p" path="res://Assets/resources/energy_lithium.png" id="3_qh6py"]
 [ext_resource type="Texture2D" uid="uid://b1vl7burv7kgn" path="res://Assets/resources/energy_tritium.png" id="4_iecm1"]
@@ -49,9 +50,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Resource" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb2m7"]
+size = Vector2(49, 81)
+
+[node name="Energy" type="Node2D"]
+script = ExtResource("1_fqr0d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.27, 0.27)
 sprite_frames = SubResource("SpriteFrames_cfhn3")
 animation = &"lithium"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_sb2m7")

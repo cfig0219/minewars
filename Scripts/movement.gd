@@ -32,7 +32,11 @@ func _physics_process(delta):
 			# reduces fuel and energy per every throttle use
 			Global.fuel = Global.fuel - (1/Global.fuel_mult)
 			Global.energy = Global.energy - (1/Global.energy_mult)
-			print(Global.fuel, " ", Global.energy, " ", Global.health)
+			
+			print("Fuel: ", Global.fuel, 
+			  " | Energy: ", Global.energy, 
+			  " | Health: ", Global.health, 
+			  " | Credits: ", Global.credits)
 			break
 
 	# Optional: rotate to velocity direction (if needed)

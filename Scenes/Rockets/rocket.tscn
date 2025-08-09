@@ -1,56 +1,82 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkpqc25hr7lj4"]
+[gd_scene load_steps=18 format=3 uid="uid://bkpqc25hr7lj4"]
 
 [ext_resource type="Texture2D" uid="uid://dq4ggmabua0dy" path="res://Assets/rocket/rocket_chemical_boosted.png" id="1_r8gsr"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_soco4"]
 [ext_resource type="Script" path="res://Scripts/movement.gd" id="1_vswyv"]
 [ext_resource type="Texture2D" uid="uid://c3gtwencbhrs4" path="res://Assets/rocket/rocket_chemical.png" id="2_hcadq"]
 [ext_resource type="Texture2D" uid="uid://b7ictqkrjg2n8" path="res://Assets/rocket/rocket_chemical_thrust.png" id="3_g8rck"]
+[ext_resource type="Texture2D" uid="uid://js8fxiqffr5h" path="res://Assets/rocket/rocket_antimatter.png" id="3_j4vb3"]
+[ext_resource type="Texture2D" uid="uid://c0gkq5vpohy3s" path="res://Assets/rocket/rocket_antimatter_thrust.png" id="4_mtyt3"]
 [ext_resource type="Script" path="res://Scripts/rocket_animation.gd" id="5_82knw"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fixd8"]
-atlas = ExtResource("1_r8gsr")
-region = Rect2(0, 0, 310, 780)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qs8pp"]
-atlas = ExtResource("2_hcadq")
-region = Rect2(0, 0, 310, 780)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_53px0"]
-atlas = ExtResource("3_g8rck")
-region = Rect2(0, 0, 310, 780)
+[ext_resource type="Texture2D" uid="uid://cgmngeqoha8co" path="res://Assets/rocket/rocket_antimatter_boosted.png" id="5_godrl"]
+[ext_resource type="Texture2D" uid="uid://b6e3wq61wj3ke" path="res://Assets/rocket/rocket_fusion.png" id="9_w3mof"]
+[ext_resource type="Texture2D" uid="uid://n40qg8uwqn41" path="res://Assets/rocket/rocket_fusion_thrust.png" id="10_be8eb"]
+[ext_resource type="Texture2D" uid="uid://cf3dtsk5o4t2s" path="res://Assets/rocket/rocket_fusion_boosted.png" id="11_6i3te"]
+[ext_resource type="Texture2D" uid="uid://df1axovjyyyl3" path="res://Assets/rocket/rocket_nuclear.png" id="12_qxg8i"]
+[ext_resource type="Texture2D" uid="uid://dfvhn3qiaro8a" path="res://Assets/rocket/rocket_nuclear_thrust.png" id="13_eqnwm"]
+[ext_resource type="Texture2D" uid="uid://go7qjnlpbyde" path="res://Assets/rocket/rocket_nuclear_boosted.png" id="14_agrxy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g26gf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fixd8")
+"texture": ExtResource("3_j4vb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mtyt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_godrl")
 }],
-"loop": true,
-"name": &"boost",
+"loop": false,
+"name": &"antimatter",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qs8pp")
+"texture": ExtResource("2_hcadq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g8rck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_r8gsr")
 }],
-"loop": true,
-"name": &"idle",
+"loop": false,
+"name": &"chemical",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_53px0")
+"texture": ExtResource("9_w3mof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_be8eb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6i3te")
 }],
-"loop": true,
-"name": &"thrust",
+"loop": false,
+"name": &"fusion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_qxg8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_eqnwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_agrxy")
+}],
+"loop": false,
+"name": &"nuclear",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3h5n"]
 radius = 121.52
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_aenir"]
-radius = 56.0
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_soco4")
@@ -62,8 +88,7 @@ script = ExtResource("1_vswyv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rocket"]
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_g26gf")
-animation = &"idle"
-autoplay = "idle"
+animation = &"antimatter"
 script = ExtResource("5_82knw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rocket"]
@@ -72,8 +97,3 @@ scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_w3h5n")
 
 [node name="Camera2D" type="Camera2D" parent="Rocket"]
-
-[node name="ResourceHealth" type="Area2D" parent="Rocket"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rocket/ResourceHealth"]
-shape = SubResource("CircleShape2D_aenir")

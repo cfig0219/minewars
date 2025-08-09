@@ -64,10 +64,10 @@ position = Vector2(328, 192)
 position = Vector2(496, 192)
 
 [node name="Fuel" parent="." instance=ExtResource("5_8ylkk")]
-position = Vector2(456, 96)
+position = Vector2(456, 88)
 
 [node name="Gem" parent="." instance=ExtResource("6_0q72t")]
-position = Vector2(360, 104)
+position = Vector2(360, 96)
 
 [node name="Volcano" parent="." instance=ExtResource("7_e08mx")]
 position = Vector2(240, 408)
