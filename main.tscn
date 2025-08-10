@@ -17,6 +17,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_mge8t")]
 position = Vector2(408, 208)
+tier = 3
 
 [node name="Poliahu" type="StaticBody2D" parent="."]
 position = Vector2(408, 544)
@@ -59,18 +60,24 @@ shape = SubResource("CircleShape2D_y5d80")
 
 [node name="Bullet" parent="." instance=ExtResource("3_pcdqo")]
 position = Vector2(328, 192)
+item = 3
 
 [node name="Energy" parent="." instance=ExtResource("4_uj00s")]
 position = Vector2(496, 192)
+item = 4
 
 [node name="Fuel" parent="." instance=ExtResource("5_8ylkk")]
 position = Vector2(456, 88)
+item = 5
 
 [node name="Gem" parent="." instance=ExtResource("6_0q72t")]
 position = Vector2(360, 96)
+item = 8
 
 [node name="Volcano" parent="." instance=ExtResource("7_e08mx")]
 position = Vector2(240, 408)
+item = 2
 
 [node name="Cloud" parent="." instance=ExtResource("8_x0es4")]
 position = Vector2(648, 328)
+item = 4

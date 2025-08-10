@@ -33,11 +33,26 @@ func _physics_process(delta):
 			Global.fuel = Global.fuel - (1/Global.fuel_mult)
 			Global.energy = Global.energy - (1/Global.energy_mult)
 			
+			# sets minimum and maximum values for resources
+			if Global.fuel > Global.fuel_max:
+				Global.fuel = Global.fuel_max
+			if Global.fuel < 0:
+				Global.fuel = 0
+			if Global.energy > Global.energy_max:
+				Global.energy = Global.energy_max
+			if Global.energy < 0:
+				Global.energy = 0
+			if Global.health < 0:
+				Global.health = 0
+			if Global.credits < 0:
+				Global.credits = 0
+			
 			print("Fuel: ", Global.fuel, 
 			  " | Energy: ", Global.energy, 
 			  " | Health: ", Global.health, 
 			  " | Credits: ", Global.credits)
 			break
+
 
 	# Optional: rotate to velocity direction (if needed)
 	# (commented out, since you're now controlling rotation manually)

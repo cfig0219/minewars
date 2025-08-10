@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var move_keys = ["thrust", "reverse"]
 
 	var animation_name = tier_frames[clamp(Global.tier - 1, 0, tier_frames.size() - 1)]
