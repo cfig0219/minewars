@@ -46,15 +46,5 @@ func _physics_process(delta):
 				Global.health = 0
 			if Global.credits < 0:
 				Global.credits = 0
-			
-			print("Fuel: ", Global.fuel, 
-			  " | Energy: ", Global.energy, 
-			  " | Health: ", Global.health, 
-			  " | Credits: ", Global.credits)
+
 			break
-
-
-	# Optional: rotate to velocity direction (if needed)
-	# (commented out, since you're now controlling rotation manually)
-	# if linear_velocity.length() > 5.0:
-	#     rotation = linear_velocity.angle() + deg_to_rad(90)
