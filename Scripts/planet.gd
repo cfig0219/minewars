@@ -24,12 +24,9 @@ var selected_resources = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(planet_type)
-	
 	for i in range(resource_names.size()):
 		if resources & (1 << i):
 			selected_resources.append(resource_names[i])
-	print("Resources:", selected_resources)
 	
 	# Apply color tint to planet texture
 	if has_node("Sprite2D"):

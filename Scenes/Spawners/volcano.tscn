@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cko3nfhvbqdsn"]
+[gd_scene load_steps=7 format=3 uid="uid://cko3nfhvbqdsn"]
 
 [ext_resource type="Script" path="res://Scripts/volcano.gd" id="1_3nmpb"]
 [ext_resource type="Texture2D" uid="uid://cdn3yq6kkdraf" path="res://Assets/land/volcano_dormant.png" id="1_gbuyj"]
@@ -32,6 +32,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vxim"]
+radius = 128.996
+
 [node name="Volcano" type="Node2D"]
 script = ExtResource("1_3nmpb")
 
@@ -39,3 +42,8 @@ script = ExtResource("1_3nmpb")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_cfhn3")
 animation = &"ice"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8vxim")

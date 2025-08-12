@@ -47,6 +47,6 @@ position = Vector2(240, 408)
 item = 2
 
 [node name="Cloud" parent="." instance=ExtResource("8_x0es4")]
-position = Vector2(648, 328)
+position = Vector2(-680, -368)
 item = 4
 cloud_color = Color(0.58964, 0.736268, 0.788949, 1)
