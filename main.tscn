@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxrha840ljdo5"]
+[gd_scene load_steps=6 format=3 uid="uid://cxrha840ljdo5"]
 
 [ext_resource type="PackedScene" uid="uid://bkpqc25hr7lj4" path="res://Scenes/Rockets/rocket.tscn" id="1_mge8t"]
 [ext_resource type="PackedScene" uid="uid://bh7sv2laclabq" path="res://Scenes/Hazards/bullet.tscn" id="3_pcdqo"]
-[ext_resource type="PackedScene" uid="uid://is0yijntpkoh" path="res://Scenes/Resources/energy.tscn" id="4_uj00s"]
-[ext_resource type="PackedScene" uid="uid://bk3ppuluq26mb" path="res://Scenes/Resources/fuel.tscn" id="5_8ylkk"]
-[ext_resource type="PackedScene" uid="uid://itk4bchy2rgi" path="res://Scenes/Resources/gems.tscn" id="6_0q72t"]
 [ext_resource type="PackedScene" uid="uid://cko3nfhvbqdsn" path="res://Scenes/Spawners/volcano.tscn" id="7_e08mx"]
 [ext_resource type="PackedScene" uid="uid://d1e2sdmfh6u5b" path="res://Scenes/Planets/planet.tscn" id="8_002jt"]
 [ext_resource type="PackedScene" uid="uid://cs1joa4ve5g05" path="res://Scenes/Spawners/clouds.tscn" id="8_x0es4"]
@@ -18,29 +15,17 @@ position = Vector2(408, 208)
 [node name="Poliahu" parent="." instance=ExtResource("8_002jt")]
 position = Vector2(400, 560)
 planet_color = Color(0.444362, 0.538337, 0.60264, 1)
-resources = 2322
+resources = 274
 
 [node name="Gula" parent="." instance=ExtResource("8_002jt")]
 position = Vector2(-1016, -16)
 scale = Vector2(2, 2)
 planet_color = Color(0.696808, 0.462718, 0.275343, 1)
-resources = 8389664
+resources = 1064
 
 [node name="Bullet" parent="." instance=ExtResource("3_pcdqo")]
 position = Vector2(328, 192)
 item = 3
-
-[node name="Energy" parent="." instance=ExtResource("4_uj00s")]
-position = Vector2(496, 192)
-item = 4
-
-[node name="Fuel" parent="." instance=ExtResource("5_8ylkk")]
-position = Vector2(456, 88)
-item = 5
-
-[node name="Gem" parent="." instance=ExtResource("6_0q72t")]
-position = Vector2(360, 96)
-item = 8
 
 [node name="Volcano" parent="." instance=ExtResource("7_e08mx")]
 position = Vector2(240, 408)

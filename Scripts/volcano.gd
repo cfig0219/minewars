@@ -60,6 +60,37 @@ func get_matching_resources_from_map(resource_map: Dictionary) -> Array:
 	return matches
 
 
+# Spawns an energy scene instance if energy is found
+func spawn_energy_resource():
+	var energy_scene = preload("res://Scenes/Resources/energy.tscn").instantiate()
+	get_tree().current_scene.add_child(energy_scene)
+	
+	# Random offset between -50 and 50 for both x and y
+	var offset_x = randf_range(-50, 50)
+	var offset_y = randf_range(-50, 50)
+	energy_scene.global_position = global_position + Vector2(offset_x, offset_y)
+
+# Spawns an fuel scene instance if fuel is found
+func spawn_fuel_resource():
+	var fuel_scene = preload("res://Scenes/Resources/fuel.tscn").instantiate()
+	get_tree().current_scene.add_child(fuel_scene)
+	
+	# Random offset between -50 and 50 for both x and y
+	var offset_x = randf_range(-50, 50)
+	var offset_y = randf_range(-50, 50)
+	fuel_scene.global_position = global_position + Vector2(offset_x, offset_y)
+
+# Spawns a gems scene instance if a gem is found
+func spawn_gem_resource():
+	var gem_scene = preload("res://Scenes/Resources/gems.tscn").instantiate()
+	get_tree().current_scene.add_child(gem_scene)
+	
+	# Random offset between -50 and 50 for both x and y
+	var offset_x = randf_range(-50, 50)
+	var offset_y = randf_range(-50, 50)
+	gem_scene.global_position = global_position + Vector2(offset_x, offset_y)
+
+
 # Called when another physics body enters our Area2D
 func _on_area_entered(body):
 	if body.scene_file_path.ends_with("planet.tscn"):
@@ -67,11 +98,15 @@ func _on_area_entered(body):
 		# Check if the planet has a script and the property exists
 		if body.get_script() != null and "selected_resources" in body:
 			planet_resources = body.selected_resources
-			print("Planet's selected resources: ", planet_resources)
 			
 	var found_gems = get_matching_resources_from_map(gem_times)
-	print("Matching gem resources:", found_gems)
 	var found_fuel = get_matching_resources_from_map(fuel_times)
-	print("Matching fuel resources:", found_fuel)
 	var found_energy = get_matching_resources_from_map(energy_times)
-	print("Matching energy resources:", found_energy)
+	
+	# spawns energy if an energy resource is found
+	if found_energy.size() > 0:
+		call_deferred("spawn_energy_resource") # deferrs call to prevent error
+	if found_fuel.size() > 0:
+		call_deferred("spawn_fuel_resource")
+	if found_gems.size() > 0:
+		call_deferred("spawn_gem_resource")

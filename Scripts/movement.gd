@@ -46,5 +46,5 @@ func _physics_process(delta):
 				Global.health = 0
 			if Global.credits < 0:
 				Global.credits = 0
-
+			print(Global.credits)
 			break

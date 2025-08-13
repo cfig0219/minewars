@@ -38,10 +38,12 @@ func _ready():
 	sprite.animation = key_name
 
 
-func _on_area_entered(_body):
-	var key_name = item_keys[item - 1]  # Convert 1–4 to 0–3 index
-	var cash_value = cash[key_name]
+func _on_area_entered(body):
+		# Check if the colliding body is a rocket instance
+	if "Rocket" in body.name:
+		var key_name = item_keys[item - 1]  # Convert 1–4 to 0–3 index
+		var cash_value = cash[key_name]
 	
-	# alters value of global variables during interaction
-	Global.credits = Global.credits + cash_value
-	queue_free() # destroys object
+		# alters value of global variables during interaction
+		Global.credits = Global.credits + cash_value
+		queue_free() # destroys object
