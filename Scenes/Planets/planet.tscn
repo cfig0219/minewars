@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://chps2cc710d28" path="res://Assets/planets/placeholder.png" id="1_pra7y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7i42c"]
+radius = 8.32
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_grqkf"]
 

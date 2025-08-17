@@ -38,6 +38,10 @@ func _ready():
 	sprite.animation = key_name
 
 
+# alters value of item value
+func set_item(value: int):
+	item = value
+
 func _on_area_entered(body):
 		# Check if the colliding body is a rocket instance
 	if "Rocket" in body.name:

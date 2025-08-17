@@ -1,50 +1,40 @@
 extends Node2D
 
+
 # assigns an item number to determine values
 @export_range(1, 6, 1) var item := 1
 # --- Custom cloud color (RGB) ---
 @export var cloud_color: Color = Color(1, 1, 1) # Default white (no tint)
-
-# stores a list of the current planet's resources
-var planet_resources = []
 # Map item numbers to dictionary keys
 var item_keys = ["cloud1", "cloud2", "cloud3",
 				 "cloud4", "cloud5", "cloud6"]
 
+# stores a list of the current planet's resources
+var planet_resources = []
+var found_fuel = []
+var found_energy = []
 
-var gem_times = {
-	"sulfur": 15,
-	"coal": 20,
-	"iron": 30,
-	"aluminum": 35,
-	"copper": 40,
-	"lead": 50,
-	"titanium": 70,
-	"gold": 80,
-	"diamonds": 100,
-	"ice7": 110,
-	"tungsten": 160,
-	"neodymium": 210,
-	"osmium": 250,
-	"rhodium": 380,
-	"plutonium": 540
-}
 
 var fuel_times = {
 	"water": 10,
-	"petroleum": 17,
-	"methane": 23,
-	"oxygen": 26,
-	"hydrogen": 60
+	"petroleum": 12,
+	"methane": 14,
+	"oxygen": 16,
+	"hydrogen": 26
 }
 
 var energy_times = {
-	"lithium": 65,
-	"uranium": 90,
-	"deuterium": 130,
-	"tritium": 750,
-	"antimatter": 1000
+	"lithium": 29,
+	"uranium": 42,
+	"deuterium": 53,
+	"tritium": 211,
+	"antimatter": 441
 }
+
+# Timer to control spawn intervals
+var spawn_timer := 0.0
+var spawn_interval := 5.0
+var spawn_loop_active := false
 
 
 func _ready():
@@ -70,8 +60,9 @@ func get_matching_resources_from_map(resource_map: Dictionary) -> Array:
 
 
 # Spawns an energy scene instance if energy is found
-func spawn_energy_resource():
+func spawn_energy_resource(item: int):
 	var energy_scene = preload("res://Scenes/Resources/energy.tscn").instantiate()
+	energy_scene.set_item(item) # alters the resource by item number
 	get_tree().current_scene.add_child(energy_scene)
 	
 	# Random offset between -50 and 50 for both x and y
@@ -80,24 +71,15 @@ func spawn_energy_resource():
 	energy_scene.global_position = global_position + Vector2(offset_x, offset_y)
 
 # Spawns an fuel scene instance if fuel is found
-func spawn_fuel_resource():
+func spawn_fuel_resource(item: int):
 	var fuel_scene = preload("res://Scenes/Resources/fuel.tscn").instantiate()
+	fuel_scene.set_item(item) # alters the resource by item number
 	get_tree().current_scene.add_child(fuel_scene)
 	
 	# Random offset between -50 and 50 for both x and y
 	var offset_x = randf_range(-50, 50)
 	var offset_y = randf_range(-50, 50)
 	fuel_scene.global_position = global_position + Vector2(offset_x, offset_y)
-
-# Spawns a gems scene instance if a gem is found
-func spawn_gem_resource():
-	var gem_scene = preload("res://Scenes/Resources/gems.tscn").instantiate()
-	get_tree().current_scene.add_child(gem_scene)
-	
-	# Random offset between -50 and 50 for both x and y
-	var offset_x = randf_range(-50, 50)
-	var offset_y = randf_range(-50, 50)
-	gem_scene.global_position = global_position + Vector2(offset_x, offset_y)
 
 
 # Called when another physics body enters our Area2D
@@ -108,14 +90,38 @@ func _on_area_entered(body):
 		if body.get_script() != null and "selected_resources" in body:
 			planet_resources = body.selected_resources
 			
-	var found_gems = get_matching_resources_from_map(gem_times)
-	var found_fuel = get_matching_resources_from_map(fuel_times)
-	var found_energy = get_matching_resources_from_map(energy_times)
+	found_fuel = get_matching_resources_from_map(fuel_times)
+	found_energy = get_matching_resources_from_map(energy_times)
+		
+	if found_fuel.size() > 0 or found_energy.size() > 0:
+			spawn_loop_active = true
+			spawn_timer = 0.0  # reset timer
+
+func _process(delta):
+	if spawn_loop_active:
+		spawn_timer += delta
+		if spawn_timer >= spawn_interval:
+			spawn_timer = 0.0
+			call_spawn_functions()
+
+
+# Returns the index of a resource key in a given map (or -1 if not found)
+func get_resource_index(resource_name: String, resource_map: Dictionary) -> int:
+	var keys = resource_map.keys()
+	var idx = keys.find(resource_name)
+	return idx if idx != -1 else -1
+
+func call_spawn_functions():
+	# variables to store a list of resource item numbers
+	var energy_items = []
+	var fuel_items = []
 	
-	# spawns resources if resources are found
-	if found_energy.size() > 0:
-		call_deferred("spawn_energy_resource") # deferrs call to prevent error
-	if found_fuel.size() > 0:
-		call_deferred("spawn_fuel_resource")
-	if found_gems.size() > 0:
-		call_deferred("spawn_gem_resource")
+	# obtains the item numbers of the found resources
+	for energy in found_energy:
+		var energy_index = 1 + get_resource_index(energy, energy_times)
+		spawn_energy_resource(energy_index)
+		print(energy_index, energy)
+	for fuel in found_fuel:
+		var fuel_index = 1 + get_resource_index(fuel, fuel_times)
+		spawn_fuel_resource(fuel_index)
+		print(fuel_index, fuel)
