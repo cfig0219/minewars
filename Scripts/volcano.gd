@@ -121,13 +121,6 @@ func _on_area_entered(body):
 			spawn_loop_active = true
 			spawn_timer = 0.0  # reset timer
 
-func _process(delta):
-	if spawn_loop_active:
-		spawn_timer += delta
-		if spawn_timer >= spawn_interval:
-			spawn_timer = 0.0
-			call_spawn_functions()
-
 
 # Returns the index of a resource key in a given map (or -1 if not found)
 func get_resource_index(resource_name: String, resource_map: Dictionary) -> int:
@@ -135,22 +128,58 @@ func get_resource_index(resource_name: String, resource_map: Dictionary) -> int:
 	var idx = keys.find(resource_name)
 	return idx if idx != -1 else -1
 
-func call_spawn_functions():
-	# variables to store a list of resource item numbers
-	var energy_items = []
-	var fuel_items = []
-	var gem_items = []
-	
-	# obtains the item numbers of the found resources
+# Returns the spawn time of a resource from the given map.
+func get_spawn_time(resource_name: String, resource_map: Dictionary) -> int:
+	if resource_map.has(resource_name):
+		return resource_map[resource_name]
+	else:
+		return -1  # return -1 if not found
+
+# Dictionary to keep track of per-resource timers
+var resource_timers: Dictionary = {}
+
+func _process(delta):
+	if spawn_loop_active:
+		# Update timers for each found resource
+		update_spawn_timers(delta)
+
+
+func update_spawn_timers(delta):
+	# Handle energy
 	for energy in found_energy:
-		var energy_index = 1 + get_resource_index(energy, energy_times)
-		spawn_energy_resource(energy_index)
-		print(energy_index, energy)
+		if not resource_timers.has(energy):
+			resource_timers[energy] = 0.0
+		resource_timers[energy] += delta
+
+		var spawn_time = get_spawn_time(energy, energy_times)
+		if resource_timers[energy] >= spawn_time:
+			resource_timers[energy] = 0.0
+			var idx = 1 + get_resource_index(energy, energy_times)
+			spawn_energy_resource(idx)
+			print("Spawned", energy, "every", spawn_time, "seconds")
+
+	# Handle fuel
 	for fuel in found_fuel:
-		var fuel_index = 1 + get_resource_index(fuel, fuel_times)
-		spawn_fuel_resource(fuel_index)
-		print(fuel_index, fuel)
+		if not resource_timers.has(fuel):
+			resource_timers[fuel] = 0.0
+		resource_timers[fuel] += delta
+
+		var spawn_time = get_spawn_time(fuel, fuel_times)
+		if resource_timers[fuel] >= spawn_time:
+			resource_timers[fuel] = 0.0
+			var idx = 1 + get_resource_index(fuel, fuel_times)
+			spawn_fuel_resource(idx)
+			print("Spawned", fuel, "every", spawn_time, "seconds")
+
+	# Handle gems
 	for gem in found_gems:
-		var gem_index = 1 + get_resource_index(gem, gem_times)
-		spawn_gem_resource(gem_index)
-		print(gem_index, gem)
+		if not resource_timers.has(gem):
+			resource_timers[gem] = 0.0
+		resource_timers[gem] += delta
+
+		var spawn_time = get_spawn_time(gem, gem_times)
+		if resource_timers[gem] >= spawn_time:
+			resource_timers[gem] = 0.0
+			var idx = 1 + get_resource_index(gem, gem_times)
+			spawn_gem_resource(idx)
+			print("Spawned", gem, "every", spawn_time, "seconds")
