@@ -82,6 +82,8 @@ radius = 121.52
 script = ExtResource("1_soco4")
 
 [node name="Rocket" type="RigidBody2D" parent="."]
+linear_damp_mode = 1
+angular_damp_mode = 1
 angular_damp = 2.55
 script = ExtResource("1_vswyv")
 

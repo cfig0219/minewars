@@ -39,3 +39,8 @@ func _ready() -> void:
 	Global.health = health
 	Global.health_max = health
 	Global.tier = tier
+	
+func _process(_delta) -> void:
+	# destroys rocket if health is zero or less
+	if Global.health <= 0:
+		queue_free()

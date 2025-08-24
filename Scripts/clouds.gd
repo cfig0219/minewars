@@ -60,9 +60,9 @@ func get_matching_resources_from_map(resource_map: Dictionary) -> Array:
 
 
 # Spawns an energy scene instance if energy is found
-func spawn_energy_resource(item: int):
+func spawn_energy_resource(selected: int):
 	var energy_scene = preload("res://Scenes/Resources/energy.tscn").instantiate()
-	energy_scene.set_item(item) # alters the resource by item number
+	energy_scene.set_item(selected) # alters the resource by item number
 	get_tree().current_scene.add_child(energy_scene)
 	
 	# Random offset between -50 and 50 for both x and y
@@ -71,9 +71,9 @@ func spawn_energy_resource(item: int):
 	energy_scene.global_position = global_position + Vector2(offset_x, offset_y)
 
 # Spawns an fuel scene instance if fuel is found
-func spawn_fuel_resource(item: int):
+func spawn_fuel_resource(selected: int):
 	var fuel_scene = preload("res://Scenes/Resources/fuel.tscn").instantiate()
-	fuel_scene.set_item(item) # alters the resource by item number
+	fuel_scene.set_item(selected) # alters the resource by item number
 	get_tree().current_scene.add_child(fuel_scene)
 	
 	# Random offset between -50 and 50 for both x and y
@@ -132,7 +132,7 @@ func update_spawn_timers(delta):
 			resource_timers[energy] = 0.0
 			var idx = 1 + get_resource_index(energy, energy_times)
 			spawn_energy_resource(idx)
-			print("Spawned", energy, "every", spawn_time, "seconds")
+			#print("Spawned", energy, "every", spawn_time, "seconds")
 
 	# Handle fuel
 	for fuel in found_fuel:
@@ -145,4 +145,4 @@ func update_spawn_timers(delta):
 			resource_timers[fuel] = 0.0
 			var idx = 1 + get_resource_index(fuel, fuel_times)
 			spawn_fuel_resource(idx)
-			print("Spawned", fuel, "every", spawn_time, "seconds")
+			#print("Spawned", fuel, "every", spawn_time, "seconds")

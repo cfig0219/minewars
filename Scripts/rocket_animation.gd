@@ -20,11 +20,13 @@ func _process(_delta: float) -> void:
 	var animation_name = tier_frames[clamp(Global.tier - 1, 0, tier_frames.size() - 1)]
 
 	for key in move_keys:
-		if Input.is_action_just_pressed(key):
-			animation = animation_name
-			stop()
-			frame = 1  # "thrust" frame
-			break
+		# if fuel is not zero
+		if Global.fuel > 0:
+			if Input.is_action_just_pressed(key):
+				animation = animation_name
+				stop()
+				frame = 1  # "thrust" frame
+				break
 
 	for key in move_keys:
 		if Input.is_action_just_released(key):
