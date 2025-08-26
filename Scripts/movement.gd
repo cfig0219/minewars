@@ -1,15 +1,19 @@
 extends RigidBody2D
 
+
 # private variables
 var speed = 400
 var rotation_speed = 5.0  # Radians per second
-
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	# obtains the current velocity of the rocket
 	Global.velocity = state.linear_velocity
 
+
 func _physics_process(delta):
+	# stores player coordinates
+	Global.player_coordinates = global_position
+	
 	# Rotate left/right
 	if Input.is_action_pressed("rotate_left"):  # A key
 		rotation -= rotation_speed * delta
@@ -47,6 +51,16 @@ func _physics_process(delta):
 		
 		bullet_scene.global_position = global_position
 		bullet_scene.set_angle(rotation)
+		
+		# Alters energy during weapon firing
+		if Global.tier == 1:
+			Global.energy = Global.energy - (120/60.0)
+		if Global.tier == 2:
+			Global.energy = Global.energy - (120/120.0)
+		if Global.tier == 3:
+			Global.energy = Global.energy - (120/180.0)
+		if Global.tier == 4:
+			Global.energy = Global.energy - (120/240.0)
 	
 	
 	# sets minimum and maximum values for resources

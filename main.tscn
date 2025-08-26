@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxrha840ljdo5"]
+[gd_scene load_steps=6 format=3 uid="uid://cxrha840ljdo5"]
 
 [ext_resource type="PackedScene" uid="uid://bkpqc25hr7lj4" path="res://Scenes/Rockets/rocket.tscn" id="1_mge8t"]
+[ext_resource type="PackedScene" uid="uid://cl6fs656hbumo" path="res://Scenes/Hazards/asteriod.tscn" id="5_ur3t7"]
 [ext_resource type="PackedScene" uid="uid://cko3nfhvbqdsn" path="res://Scenes/Spawners/volcano.tscn" id="7_e08mx"]
 [ext_resource type="PackedScene" uid="uid://d1e2sdmfh6u5b" path="res://Scenes/Planets/planet.tscn" id="8_002jt"]
 [ext_resource type="PackedScene" uid="uid://cs1joa4ve5g05" path="res://Scenes/Spawners/clouds.tscn" id="8_x0es4"]
@@ -10,7 +11,6 @@
 [node name="Player" parent="." instance=ExtResource("1_mge8t")]
 top_level = true
 position = Vector2(408, 208)
-tier = 4
 
 [node name="Poliahu" parent="." instance=ExtResource("8_002jt")]
 position = Vector2(400, 560)
@@ -32,3 +32,7 @@ position = Vector2(168, -176)
 scale = Vector2(0.5, 0.5)
 item = 4
 cloud_color = Color(0.58964, 0.736268, 0.788949, 1)
+
+[node name="Asteriod" parent="." instance=ExtResource("5_ur3t7")]
+position = Vector2(152, -160)
+item = 2

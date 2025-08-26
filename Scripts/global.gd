@@ -6,6 +6,7 @@ var credits = 0
 var fuel = 24.0
 var energy = 120.0
 var velocity = Vector2(0.0, 0.0)
+var player_coordinates = Vector2(0.0, 0.0)
 
 var fuel_max = 24.0
 var energy_max = 120.0

@@ -24,6 +24,10 @@ var speed = {
 
 # Map item numbers to dictionary keys
 var item_keys = ["bullet", "plasma", "missile", "antimatter"]
+# Saves the x and y components of the current velocity
+var x_velocity = 0.0
+var y_velocity = 0.0
+var player_dist = 0.0
 
 
 func _ready():
@@ -34,19 +38,26 @@ func _ready():
 	var sprite = $AnimatedSprite2D
 	var key_name = item_keys[item - 1]
 	sprite.animation = key_name
+	
+	# saves the x and y compoment of velocity during creation
+	x_velocity = Global.velocity.x
+	y_velocity = Global.velocity.y
+
 
 func _process(_delta) -> void:
 	var key_name = item_keys[item - 1]
 	var speed_value = speed[key_name]
 	
+	# calculates the current velocity per frame rate
+	var frame_vel = Vector2(x_velocity, y_velocity) * _delta
 	# moves the projective in the current direction
 	var forward = Vector2.UP.rotated(rotation + deg_to_rad(90))
-	# calculated the current velocity per frame rate
-	var frame_vel = Global.velocity * _delta
-	#print(frame_vel)
-	#global_translate(frame_vel)
-	global_translate(forward * speed_value)
-
+	global_translate(frame_vel + (forward * speed_value))
+	
+	# Calculates distance from player
+	player_dist = position.distance_to(Global.player_coordinates)
+	if player_dist > 700:
+		queue_free() # destroys bullet
 
 # alters the current angle of the bullet
 func set_angle(new_angle):
@@ -80,6 +91,12 @@ func _on_area_entered(body):
 	if bullet_type == "friendly":
 		# if bullet collides with enemy
 		if body_name == "Enemy":
+			# if bullet is not antimatter
+			if item != 4:
+				queue_free() # destroys object
+		# if bullet collides with asteriod
+		if body_name == "Asteriod":
+			#print(body.get_health())
 			# if bullet is not antimatter
 			if item != 4:
 				queue_free() # destroys object
