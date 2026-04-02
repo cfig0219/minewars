@@ -25,7 +25,7 @@ The game features a progression system based on four propulsion and weapon techn
 * **Solar System Exploration:** Navigate between procedurally placed planets and asteroid belts.
 
 ## 🛠️ Tech Stack
-* **Game Engine:** Godot Engine 4.x
+* **Game Engine:** Godot Engine 4.3
 * **Language:** GDScript
 * **Assets:** Custom 2D/3D sprites and particle systems for propulsion effects.
 
